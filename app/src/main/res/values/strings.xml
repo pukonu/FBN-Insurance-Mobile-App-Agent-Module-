@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">FBN Insurance</string>
+    <string name="title_activity_welcome">Welcome Activity</string>
+    <string name="desc_image_welcome_activity_bg">Welcome activity background image</string>
+
+    <string name="str_forgot_password">Forgot Password ?</string>
+    <string name="str_login">Login</string>
+    <string name="str_hint_password">Enter your password</string>
+    <string name="str_hint_email">Enter email address</string>
+    <string name="str_not_a_member">Not a Member?</string>
+    <string name="str_sign_in">Sign in</string>
+    <string name="str_signup">Sign up</string>
+    <string name="str_remember_password">Remember password</string>
+    <string name="str_email">Email</string>
+    <string name="str_password">Password</string>
+    <string name="str_placeholder">Placeholder</string>
+    <string name="str_or">Or</string>
+    <string name="str_image">Image</string>
+    <string name="str_payment_method">Add New Payment Method</string>
+
+    <string name="title_activity_main">Main Activity</string>
+    <string name="str_ma_onboarding">New Customer Onboarding</string>
+    <string name="str_ma_view_portfolio">Customer Portofolio Management</string>
+    <string name="str_ma_todo">WHAT WOULD YOU LIKE TO DO</string>
+    <string name="str_error_username_password">Username or password error</string>
+</resources>
