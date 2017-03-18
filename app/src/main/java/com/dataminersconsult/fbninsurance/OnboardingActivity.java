@@ -11,6 +11,12 @@ import android.widget.ImageView;
 
 import com.dataminersconsult.fbninsurance.OnboardingFragments.OnboardPagerAdapter;
 
+import co.paystack.android.Paystack;
+import co.paystack.android.PaystackSdk;
+import co.paystack.android.model.Card;
+import co.paystack.android.model.Charge;
+import co.paystack.android.model.Transaction;
+
 public class OnboardingActivity extends AppCompatActivity {
     private static final String TAG = "OnboardingActivity";
 
@@ -20,6 +26,30 @@ public class OnboardingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_onboarding);
+
+        PaystackSdk.initialize(getApplicationContext());
+        Charge charge = new Charge();
+        charge.setCard(new Card.Builder("4123450131001381", 9, 2019, "883").build());
+        charge.setEmail("pukonu@gmail.com");
+        charge.setAmount(10000);
+
+        PaystackSdk.setPublicKey("pk_test_3b537cef92446fa39c306aac6112f67eadb349bc");
+        PaystackSdk.chargeCard(this, charge, new Paystack.TransactionCallback() {
+            @Override
+            public void onSuccess(Transaction transaction) {
+                Log.d(TAG, "onSuccess: Transaction success " + transaction.toString());
+            }
+
+            @Override
+            public void beforeValidate(Transaction transaction) {
+                Log.d(TAG, "beforeValidate: Transaction success " + transaction.toString());
+            }
+
+            @Override
+            public void onError(Throwable error) {
+                Log.d(TAG, "onError: Transaction error " + error.toString());
+            }
+        });
 
         // TABVIEW
         // Create new tabs

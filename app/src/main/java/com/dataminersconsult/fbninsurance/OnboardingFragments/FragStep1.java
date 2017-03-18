@@ -24,7 +24,6 @@ public class FragStep1 extends Fragment {
 
     public static final int FORM_TYPE_SINGLE = 1;
     public static final int FORM_ROW_SINGLE = R.layout.form_row_single;
-    private EditText firstnameEditText;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -95,14 +94,6 @@ public class FragStep1 extends Fragment {
 
     public View buildFormRow(LayoutInflater inflater, int type, String label) {
         View view = inflater.inflate(FORM_ROW_SINGLE, null);
-        TextView tv = (TextView) view.findViewById(R.id.label_oa_frag1_generic);
-        EditText et = (EditText) view.findViewById(R.id.edittext_oa_frag1_generic);
-        tv.setText(label);
-
-        return view;
-    }
-
-    private View buildFormRow(View view, String label) {
         TextView tv = (TextView) view.findViewById(R.id.label_oa_frag1_generic);
         EditText et = (EditText) view.findViewById(R.id.edittext_oa_frag1_generic);
         tv.setText(label);

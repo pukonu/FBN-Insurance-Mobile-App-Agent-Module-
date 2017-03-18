@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.dataminersconsult.fbninsurance">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -35,6 +37,9 @@
             android:label="@string/title_onboarding"
             android:theme="@style/AppTheme.NoStatusBar"
             android:windowSoftInputMode="stateHidden|adjustResize">
+            <meta-data
+                android:name="co.paystack.android.PublicKey"
+                android:value="pk_test_3b537cef92446fa39c306aac6112f67eadb349bc"/>
         </activity>
     </application>
 
