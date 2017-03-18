@@ -10,7 +10,7 @@
 
     <include
         android:id="@+id/toolbar"
-        layout="@layout/toolbar"></include>
+        layout="@layout/toolbar_home" />
 
 
     <ScrollView
@@ -18,7 +18,9 @@
         android:layout_height="wrap_content"
         android:scrollbars="none"
 
-        >
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -45,7 +47,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/linear_button_onboarding"
+                android:id="@+id/linear_view_onboarding"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/linear_logo"
@@ -60,28 +62,39 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:padding="16dp">
+                    android:padding="16dp"
+                    android:weightSum="12"
+                    android:id="@+id/linear_button_onboarding">
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="24dp"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_weight="2"
+                        android:contentDescription="@string/str_image"
+                        android:scaleType="fitCenter"
+                        app:srcCompat="@drawable/vector_icon_startup"/>
 
                     <TextView
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
                         android:layout_marginTop="8dp"
-                        android:drawableLeft="@drawable/add"
-                        android:drawableStart="@drawable/add"
+                        android:layout_weight="10"
                         android:drawablePadding="12dp"
                         android:text="@string/str_ma_onboarding"
                         android:textColor="@color/red"
-                        android:textSize="@dimen/text"/>
+                        android:textSize="18sp"/>
 
                 </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/linear_button_portfolio"
+                android:id="@+id/linear_view_portfolio"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/linear_button_onboarding"
+                android:layout_below="@+id/linear_view_onboarding"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginTop="16dp"
@@ -93,21 +106,116 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:padding="16dp">
+                    android:padding="16dp"
+                    android:id="@+id/linear_button_view_customers">
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="24dp"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_weight="2"
+                        android:contentDescription="@string/str_image"
+                        android:scaleType="fitCenter"
+                        app:srcCompat="@drawable/vector_icon_search_user"/>
 
                     <TextView
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
                         android:layout_marginTop="8dp"
-                        android:drawableLeft="@drawable/add"
-                        android:drawableStart="@drawable/add"
-                        android:drawablePadding="12dp"
+                        android:layout_weight="10"
                         android:text="@string/str_ma_view_portfolio"
                         android:textColor="@color/red"
-                        android:textSize="@dimen/text"/>
+                        android:textSize="18sp"/>
 
                 </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linear_view_quotation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/linear_view_portfolio"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/rect"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:id="@+id/linear_button_get_quotation">
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="24dp"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_weight="2"
+                        android:contentDescription="@string/str_image"
+                        android:scaleType="fitCenter"
+                        app:srcCompat="@drawable/vector_icon_calculate"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_weight="10"
+                        android:text="@string/str_ma_get_quotation"
+                        android:textColor="@color/red"
+                        android:textSize="18sp"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linear_view_product"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/linear_view_quotation"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/rect"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:id="@+id/linear_button_view_product">
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="24dp"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_weight="2"
+                        android:contentDescription="@string/str_image"
+                        android:scaleType="fitCenter"
+                        app:srcCompat="@drawable/vector_icon_shopping"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_weight="10"
+                        android:text="@string/str_ma_products"
+                        android:textColor="@color/red"
+                        android:textSize="18sp"/>
+
+                </LinearLayout>
+
+
             </LinearLayout>
         </RelativeLayout>
     </ScrollView>

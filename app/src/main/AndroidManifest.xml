@@ -30,6 +30,12 @@
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoStatusBar">
         </activity>
+        <activity
+            android:name=".OnboardingActivity"
+            android:label="@string/title_onboarding"
+            android:theme="@style/AppTheme.NoStatusBar"
+            android:windowSoftInputMode="stateHidden|adjustResize">
+        </activity>
     </application>
 
 </manifest>

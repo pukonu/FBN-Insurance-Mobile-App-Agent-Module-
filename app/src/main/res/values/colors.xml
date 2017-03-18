@@ -308,7 +308,7 @@
     <color name="White">#fff</color>
 
 
-    <color name="colordevider">#f1f2f4</color>
+    <color name="color_divider">#f1f2f4</color>
     <color name="colorbutton">#ff5254</color>
     <color name="iconcolour">#9ba4ab</color>
     <color name="strok">#e4e5ea</color>
