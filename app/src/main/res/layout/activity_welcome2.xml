@@ -160,7 +160,7 @@
     <com.dataminersconsult.customfonts.TextViewStyleA
         android:id="@+id/wa_label_login"
         android:layout_height="wrap_content"
-        android:background="@drawable/rect1"
+        android:background="@drawable/rect_rounded_pink"
         android:gravity="center"
         android:padding="12dp"
         android:text="@string/str_sign_in"

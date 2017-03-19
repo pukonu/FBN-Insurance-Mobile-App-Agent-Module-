@@ -24,10 +24,11 @@ public class FragStep1 extends Fragment {
 
     public static final int FORM_TYPE_SINGLE = 1;
     public static final int FORM_ROW_SINGLE = R.layout.form_row_single;
+    private EditText firstnameEditText;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Log.d(TAG, "onCreateView: started");
+//        Log.d(TAG, "onCreateView: started");
 
         LinearLayout layout = new LinearLayout(getActivity());
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(

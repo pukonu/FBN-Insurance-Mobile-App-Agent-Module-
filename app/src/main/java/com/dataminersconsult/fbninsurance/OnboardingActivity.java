@@ -18,7 +18,7 @@ import co.paystack.android.model.Charge;
 import co.paystack.android.model.Transaction;
 
 public class OnboardingActivity extends AppCompatActivity {
-    private static final String TAG = "OnboardingActivity";
+//    private static final String TAG = "OnboardingActivity";
 
     private ViewPager viewPager;
 
@@ -27,35 +27,36 @@ public class OnboardingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_onboarding);
 
-        PaystackSdk.initialize(getApplicationContext());
-        Charge charge = new Charge();
-        charge.setCard(new Card.Builder("4123450131001381", 9, 2019, "883").build());
-        charge.setEmail("pukonu@gmail.com");
-        charge.setAmount(10000);
-
-        PaystackSdk.setPublicKey("pk_test_3b537cef92446fa39c306aac6112f67eadb349bc");
-        PaystackSdk.chargeCard(this, charge, new Paystack.TransactionCallback() {
-            @Override
-            public void onSuccess(Transaction transaction) {
-                Log.d(TAG, "onSuccess: Transaction success " + transaction.toString());
-            }
-
-            @Override
-            public void beforeValidate(Transaction transaction) {
-                Log.d(TAG, "beforeValidate: Transaction success " + transaction.toString());
-            }
-
-            @Override
-            public void onError(Throwable error) {
-                Log.d(TAG, "onError: Transaction error " + error.toString());
-            }
-        });
+//        PaystackSdk.initialize(getApplicationContext());
+//        Charge charge = new Charge();
+//        charge.setCard(new Card.Builder("4123450131001381", 9, 2019, "883").build());
+//        charge.setEmail("pukonu@gmail.com");
+//        charge.setAmount(10000);
+//
+//        PaystackSdk.setPublicKey("pk_test_3b537cef92446fa39c306aac6112f67eadb349bc");
+//        PaystackSdk.chargeCard(this, charge, new Paystack.TransactionCallback() {
+//            @Override
+//            public void onSuccess(Transaction transaction) {
+//                Log.d(TAG, "onSuccess: Transaction success " + transaction.toString());
+//            }
+//
+//            @Override
+//            public void beforeValidate(Transaction transaction) {
+//                Log.d(TAG, "beforeValidate: Transaction success " + transaction.toString());
+//            }
+//
+//            @Override
+//            public void onError(Throwable error) {
+//                Log.d(TAG, "onError: Transaction error " + error.toString());
+//            }
+//        });
 
         // TABVIEW
         // Create new tabs
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
-        tabLayout.addTab(tabLayout.newTab().setText("Step 1"));
-        tabLayout.addTab(tabLayout.newTab().setText("Step 2"));
+        tabLayout.addTab(tabLayout.newTab().setText("Basic Information"));
+        tabLayout.addTab(tabLayout.newTab().setText("Policy Details"));
+        tabLayout.addTab(tabLayout.newTab().setText("Image Capture"));
 
         viewPager = (ViewPager) findViewById(R.id.pager);
 
@@ -67,7 +68,7 @@ public class OnboardingActivity extends AppCompatActivity {
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                Log.d(TAG, "onTabSelected: Tab has been selected at position" + tab.getPosition());
+//                Log.d(TAG, "onTabSelected: Tab has been selected at position" + tab.getPosition());
                 viewPager.setCurrentItem(tab.getPosition(), true);
             }
 

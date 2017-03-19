@@ -22,7 +22,7 @@ public class FragStep2 extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Log.d(TAG, "onCreateView: started");
+//        Log.d(TAG, "onCreateView: started");
 
         LinearLayout layout = new LinearLayout(getActivity());
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
