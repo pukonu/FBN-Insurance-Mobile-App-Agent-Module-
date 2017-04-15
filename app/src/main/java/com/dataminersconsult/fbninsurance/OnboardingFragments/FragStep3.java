@@ -5,13 +5,19 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -23,8 +29,10 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.dataminersconsult.customfonts.TextViewStyleA;
+import com.dataminersconsult.fbninsurance.OnboardingActivity;
 import com.dataminersconsult.fbninsurance.R;
 import com.dataminersconsult.fbninsurance.lib.PermissionUtility;
+import com.google.gson.Gson;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -46,14 +54,26 @@ public class FragStep3 extends Fragment {
     private String userChosenTask;
     private ImageView mImageView;
 
+    private SharedPreferences prefs;
+    private CustomerFactory customerFactory;
+    private Bitmap bm = null;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         Log.d(TAG, "onCreateView: started");
         View view = inflater.inflate(R.layout.activity_onboarding_frag3, container, false);
 
-        mImageView = (ImageView) view.findViewById(R.id.oa_frag3_imageHolder);
-        TextViewStyleA mTextViewStyleA = (TextViewStyleA) view.findViewById(R.id.oa_frag3_get_photo);
+        OnboardingActivity activity = (OnboardingActivity) getActivity();
+        customerFactory = activity.mCustomerFactory;
+        prefs = getContext().getSharedPreferences("ON_BOARDING", Context.MODE_PRIVATE);
 
+        mImageView = (ImageView) view.findViewById(R.id.oa_frag3_imageHolder);
+        bm = customerFactory.getImage(prefs);
+        if (bm != null) {
+            mImageView.setImageBitmap(bm);
+        }
+
+        TextViewStyleA mTextViewStyleA = (TextViewStyleA) view.findViewById(R.id.oa_frag3_get_photo);
         mTextViewStyleA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -63,6 +83,33 @@ public class FragStep3 extends Fragment {
 
         return view;
     }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        OnboardingActivity activity = (OnboardingActivity) getActivity();
+        customerFactory = activity.mCustomerFactory;
+        if (bm != null) {
+            customerFactory.setImage(bm, prefs);
+        }
+        outState.putSerializable("CUSTOMER_FACTORY", customerFactory);
+    }
+
+    @Override
+    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
+        LayoutInflater layoutInflater = getLayoutInflater(savedInstanceState);
+        if (savedInstanceState != null){
+            customerFactory = (CustomerFactory) savedInstanceState.getSerializable("CUSTOMER_FACTORY");
+            try {
+                bm = customerFactory.getImage(prefs);
+                mImageView.setImageBitmap(bm);
+            } catch (NullPointerException e) {
+                Log.e(TAG, "onViewStateRestored: " + e.toString(), e);
+            }
+        }
+    }
+
 
     private void selectImage () {
         final CharSequence[] items = { DIALOG_CAMERA, DIALOG_GALLERY, DIALOG_CANCEL };
@@ -137,16 +184,15 @@ public class FragStep3 extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == Activity.RESULT_OK) {
-            onSelectFromGalleryResult(data);
-        } else if (requestCode == REQUEST_CAMERA) {
+        if (requestCode == REQUEST_CAMERA) {
             onCaptureImageResult(data);
+        } else if (resultCode == Activity.RESULT_OK) {
+            onSelectFromGalleryResult(data);
         }
     }
 
     @SuppressWarnings("deprecation")
     private void onSelectFromGalleryResult (Intent data) {
-        Bitmap bm = null;
         if (data != null) {
             try {
                 bm = MediaStore.Images.Media.getBitmap(getActivity().getApplicationContext().getContentResolver(), data.getData());
@@ -157,9 +203,20 @@ public class FragStep3 extends Fragment {
                 e.printStackTrace();
             }
         }
+
+//        try {
+//            Uri imageUri = getImageUri(getActivity().getApplicationContext(), bm);
+//            bm = rotateImageIfRequired(imageUri);
+//            Log.d(TAG, "onSelectFromGalleryResult: Image rotated");
+//        } catch (IOException e) {
+//            Log.e(TAG, "onSelectFromGalleryResult: " + e.toString());
+//        }
+
+//        mActivity.mCustomerFactory.setImage(bm);
+
         mImageView.setImageBitmap(bm);
 
-        // TODO fix Glide class for image to show in proper orientation
+        // TODO fix the image function
 //        Glide.with(getContext())
 //                .load(getImageUri(getActivity().getApplicationContext(), bm)) // Uri of the picture
 //                .centerCrop()
@@ -169,9 +226,9 @@ public class FragStep3 extends Fragment {
     }
 
     private void onCaptureImageResult(Intent data) {
-        Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
+        bm = (Bitmap) data.getExtras().get("data");
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-        thumbnail.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
+        bm.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
         File destination = new File(Environment.getExternalStorageDirectory(),
                 System.currentTimeMillis() + ".jpg");
         FileOutputStream fo;
@@ -188,7 +245,9 @@ public class FragStep3 extends Fragment {
             e.printStackTrace();
         }
 
-        mImageView.setImageBitmap(thumbnail);
+//        mActivity.mCustomerFactory.setImage(thumbnail);
+
+        mImageView.setImageBitmap(bm);
     }
 
     public Uri getImageUri(Context inContext, Bitmap inImage) {
@@ -196,5 +255,38 @@ public class FragStep3 extends Fragment {
         inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
         String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "Title", null);
         return Uri.parse(path);
+    }
+
+    public static Bitmap rotateImageIfRequired(Uri selectedImage) throws IOException {
+
+        String mMediaString = selectedImage.toString();
+        Log.d(TAG, "rotateImageIfRequired: " + mMediaString);
+        BitmapFactory.Options bounds = new BitmapFactory.Options();
+        bounds.inJustDecodeBounds = true;
+        BitmapFactory.decodeFile(mMediaString, bounds);
+
+        BitmapFactory.Options opts = new BitmapFactory.Options();
+        Bitmap bm = BitmapFactory.decodeFile(mMediaString, opts);
+        ExifInterface exif = null;
+        try
+        {
+            exif = new ExifInterface(mMediaString);
+        }
+        catch (IOException e)
+        {
+            //Error
+            e.printStackTrace();
+        }
+        String orientString = exif.getAttribute(ExifInterface.TAG_ORIENTATION);
+        int orientation = orientString != null ? Integer.parseInt(orientString) :  ExifInterface.ORIENTATION_NORMAL;
+
+        int rotationAngle = 0;
+        if (orientation == ExifInterface.ORIENTATION_ROTATE_90) rotationAngle = 90;
+        if (orientation == ExifInterface.ORIENTATION_ROTATE_180) rotationAngle = 180;
+        if (orientation == ExifInterface.ORIENTATION_ROTATE_270) rotationAngle = 270;
+
+        Matrix matrix = new Matrix();
+        matrix.setRotate(rotationAngle, (float) bm.getWidth() / 2, (float) bm.getHeight() / 2);
+        return Bitmap.createBitmap(bm, 0, 0, bounds.outWidth, bounds.outHeight, matrix, true);
     }
 }

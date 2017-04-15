@@ -17,7 +17,7 @@
         android:paddingTop="16dp">
 
         <com.dataminersconsult.customfonts.TextViewStyleA
-            android:id="@+id/label_oa_frag1_generic"
+            android:id="@+id/label_oa_frag1_select"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="10dp"
@@ -37,8 +37,8 @@
         android:orientation="vertical"
         android:paddingTop="16dp">
 
-        <com.dataminersconsult.customfonts.EditTextStyleA
-            android:id="@+id/edittext_oa_frag1_generic"
+        <Spinner
+            android:id="@+id/spinner_oa_frag1_select"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="10dp"
@@ -46,7 +46,6 @@
             android:paddingRight="10dp"
             android:paddingEnd="10dp"
             android:background="#00000000"
-            android:maxLines="1"
             android:textColor="@color/Tex"
             android:textSize="@dimen/text"/>
 

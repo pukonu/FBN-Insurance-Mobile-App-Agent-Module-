@@ -12,7 +12,7 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 
 /**
- * Provider for the TaskTimer app. This is the only class that knows about {@link AppDatabase}
+ * Provider for the FBN Insurance app. This is the only class that knows about {@link AppDatabase}
  */
 public class AppProvider extends ContentProvider {
     private static final String TAG = "AppProvider";

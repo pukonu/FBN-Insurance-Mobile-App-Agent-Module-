@@ -1,5 +1,6 @@
 package com.dataminersconsult.fbninsurance;
 
+import android.content.SharedPreferences;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -9,7 +10,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.dataminersconsult.fbninsurance.OnboardingFragments.CustomerFactory;
 import com.dataminersconsult.fbninsurance.OnboardingFragments.OnboardPagerAdapter;
+import com.google.gson.Gson;
 
 import co.paystack.android.Paystack;
 import co.paystack.android.PaystackSdk;
@@ -21,11 +24,14 @@ public class OnboardingActivity extends AppCompatActivity {
 //    private static final String TAG = "OnboardingActivity";
 
     private ViewPager viewPager;
+    public CustomerFactory mCustomerFactory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_onboarding);
+
+        mCustomerFactory = new CustomerFactory();
 
 //        PaystackSdk.initialize(getApplicationContext());
 //        Charge charge = new Charge();
@@ -57,6 +63,7 @@ public class OnboardingActivity extends AppCompatActivity {
         tabLayout.addTab(tabLayout.newTab().setText("Basic Information"));
         tabLayout.addTab(tabLayout.newTab().setText("Policy Details"));
         tabLayout.addTab(tabLayout.newTab().setText("Image Capture"));
+        tabLayout.addTab(tabLayout.newTab().setText("Save Information"));
 
         viewPager = (ViewPager) findViewById(R.id.pager);
 
@@ -79,7 +86,7 @@ public class OnboardingActivity extends AppCompatActivity {
 
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
-
+                // TODO pass bitmap into fragment
             }
         });
 

@@ -1,35 +1,113 @@
 package com.dataminersconsult.fbninsurance.OnboardingFragments;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.Editable;
 import android.text.Layout;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.dataminersconsult.customfonts.TextViewStyleA;
+import com.dataminersconsult.fbninsurance.OnboardingActivity;
 import com.dataminersconsult.fbninsurance.R;
+import com.google.gson.Gson;
 
 import org.w3c.dom.Text;
+
+import java.text.Normalizer;
+import java.util.ArrayList;
 
 public class FragStep1 extends Fragment {
 
     private static final String TAG = "FragStep1";
 
-    public static final int FORM_TYPE_SINGLE = 1;
+    public static final int LISTENER_ON = 1;
+    public static final int LISTENER_OFF = 0;
     public static final int FORM_ROW_SINGLE = R.layout.form_row_single;
-    private EditText firstnameEditText;
+    public static final int FORM_ROW_SELECT = R.layout.form_row_select;
+    private EditText[] et = new EditText[100];
+    private Spinner[] spinner = new Spinner[100];
+    private SharedPreferences prefs;
+
+    private CustomerFactory customerFactory;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-//        Log.d(TAG, "onCreateView: started");
+        OnboardingActivity activity = (OnboardingActivity) getActivity();
+        customerFactory = activity.mCustomerFactory;
+        prefs = getContext().getSharedPreferences("ON_BOARDING", Context.MODE_PRIVATE);
 
+        Log.d(TAG, "onCreateView: called just now");
+        return buildViews(inflater);
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        OnboardingActivity activity = (OnboardingActivity) getActivity();
+        customerFactory = activity.mCustomerFactory;
+        outState.putSerializable("CUSTOMER_FACTORY", customerFactory);
+        prefs = getContext().getSharedPreferences("ON_BOARDING", Context.MODE_PRIVATE);
+
+        for (FormFactory.FIELDS fields : FormFactory.FIELDS.values()) {
+            String[] propertyBuild = FormFactory.getFieldProperties(fields.toString());
+            String slug = fields.toString();
+            int id = Integer.parseInt(propertyBuild[0]);
+            int formType = Integer.parseInt(propertyBuild[3]);
+
+            String value = "";
+
+            if (formType == FormFactory.FORM_TYPE_SELECT) {
+                value = spinner[id].getSelectedItem().toString();
+            } else {
+                value = et[id].getText().toString();
+            }
+
+            customerFactory.generic(value, slug, CustomerFactory.PUT, prefs);
+        }
+    }
+
+    @Override
+    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
+        LayoutInflater layoutInflater = getLayoutInflater(savedInstanceState);
+        if (savedInstanceState != null){
+            customerFactory = (CustomerFactory) savedInstanceState.getSerializable("CUSTOMER_FACTORY");
+            if (customerFactory != null) {
+                prefs = getContext().getSharedPreferences("ON_BOARDING", Context.MODE_PRIVATE);
+                for (FormFactory.FIELDS fields : FormFactory.FIELDS.values()) {
+                    String[] propertyBuild = FormFactory.getFieldProperties(fields.toString());
+                    String slug = fields.toString();
+                    int id = Integer.parseInt(propertyBuild[0]);
+                    int formType = Integer.parseInt(propertyBuild[3]);
+                    String value = customerFactory.generic(null, slug, CustomerFactory.GET, prefs);
+                    Log.d(TAG, "onViewState CustomerFactory " + id + " : " + slug + " : " + value);
+
+                    if (formType == FormFactory.FORM_TYPE_SELECT) {
+                        spinner[id].setSelection(FormFactory.SELECT_TITLE.valueOf(value).ordinal());
+                    } else {
+                        et[id].setText(value);
+                    }
+                }
+            }
+        }
+    }
+
+    public ScrollView buildViews(LayoutInflater inflater){
         LinearLayout layout = new LinearLayout(getActivity());
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -37,54 +115,12 @@ public class FragStep1 extends Fragment {
         layout.setOrientation(LinearLayout.VERTICAL);
         layout.setLayoutParams(layoutParams);
 
-        // first name
-        View firstnameView = buildFormRow(inflater, FORM_TYPE_SINGLE, "First Name");
-        View lastnameView = buildFormRow(inflater, FORM_TYPE_SINGLE, "Last Name");
-        View middlenameView = buildFormRow(inflater, FORM_TYPE_SINGLE, "Middle Name");
-        View titleView = buildFormRow(inflater, FORM_TYPE_SINGLE, "Title");
-        View occupationView = buildFormRow(inflater, FORM_TYPE_SINGLE, "Occupation");
-        View businessTypeView = buildFormRow(inflater, FORM_TYPE_SINGLE, "Business Type");
-        View poBoxView = buildFormRow(inflater, FORM_TYPE_SINGLE, "P. O. Box");
-        View buildingNumberView = buildFormRow(inflater, FORM_TYPE_SINGLE, "Building Number");
-        View streetNameView = buildFormRow(inflater, FORM_TYPE_SINGLE, "Street Name");
-        View cityView = buildFormRow(inflater, FORM_TYPE_SINGLE, "City");
-        View stateView = buildFormRow(inflater, FORM_TYPE_SINGLE, "State");
-        View emailView = buildFormRow(inflater, FORM_TYPE_SINGLE, "Email");
-        View phoneMobileView = buildFormRow(inflater, FORM_TYPE_SINGLE, "Phone (Mobile)");
-        View phoneWorkView = buildFormRow(inflater, FORM_TYPE_SINGLE, "Phone (Work)");
-        View identificationTypeView = buildFormRow(inflater, FORM_TYPE_SINGLE, "Identification Type");
-        View evidenceOfAddressView = buildFormRow(inflater, FORM_TYPE_SINGLE, "Evidence of Address");
-        View idNumberView = buildFormRow(inflater, FORM_TYPE_SINGLE, "ID Number");
-        View dateOfBirthView = buildFormRow(inflater, FORM_TYPE_SINGLE, "Date of Birth");
-        View maritalStatusView = buildFormRow(inflater, FORM_TYPE_SINGLE, "Marital Status");
-        View nationalityView = buildFormRow(inflater, FORM_TYPE_SINGLE, "Nationality");
-        View stateOfOriginView = buildFormRow(inflater, FORM_TYPE_SINGLE, "State of Origin");
-        View lgaView = buildFormRow(inflater, FORM_TYPE_SINGLE, "Local Government Area");
-        View religionView = buildFormRow(inflater, FORM_TYPE_SINGLE, "Religion");
+        for (FormFactory.FIELDS fields : FormFactory.FIELDS.values()) {
+            String[] propertyBuild = FormFactory.getFieldProperties(fields.toString());
+            String slug = fields.toString();
 
-        layout.addView(firstnameView);
-        layout.addView(lastnameView);
-        layout.addView(middlenameView);
-        layout.addView(titleView);
-        layout.addView(occupationView);
-        layout.addView(businessTypeView);
-        layout.addView(poBoxView);
-        layout.addView(buildingNumberView);
-        layout.addView(streetNameView);
-        layout.addView(cityView);
-        layout.addView(stateView);
-        layout.addView(emailView);
-        layout.addView(phoneMobileView);
-        layout.addView(phoneWorkView);
-        layout.addView(identificationTypeView);
-        layout.addView(evidenceOfAddressView);
-        layout.addView(idNumberView);
-        layout.addView(dateOfBirthView);
-        layout.addView(maritalStatusView);
-        layout.addView(nationalityView);
-        layout.addView(stateOfOriginView);
-        layout.addView(lgaView);
-        layout.addView(religionView);
+            layout.addView(buildFormRow(inflater, slug, propertyBuild));
+        }
 
         ScrollView scrollView = new ScrollView(getActivity());
         scrollView.setLayoutParams(layoutParams);
@@ -93,11 +129,51 @@ public class FragStep1 extends Fragment {
         return scrollView;
     }
 
-    public View buildFormRow(LayoutInflater inflater, int type, String label) {
-        View view = inflater.inflate(FORM_ROW_SINGLE, null);
-        TextView tv = (TextView) view.findViewById(R.id.label_oa_frag1_generic);
-        EditText et = (EditText) view.findViewById(R.id.edittext_oa_frag1_generic);
-        tv.setText(label);
+    public View buildFormRow(LayoutInflater inflater, final String slug, String[] propertyBuild ) {
+
+        int id = Integer.parseInt(propertyBuild[0]);
+        String label = propertyBuild[1];
+        String hintText = propertyBuild[2];
+        int formType = Integer.parseInt(propertyBuild[3]);
+
+        View view;
+        TextView tv;
+
+        Log.d(TAG, "buildFormRow: " + slug);
+
+        if (formType == FormFactory.FORM_TYPE_SELECT) {
+            view = inflater.inflate(FORM_ROW_SELECT, null);
+            tv = (TextView) view.findViewById(R.id.label_oa_frag1_select);
+            tv.setText(label);
+
+            ArrayList<String> spinnerArray = new ArrayList<String>();
+            for (FormFactory.SELECT_TITLE title : FormFactory.SELECT_TITLE.values()) {
+                spinnerArray.add(title.toString());
+            }
+
+            ArrayAdapter<String> spinnerAdapter =
+                    new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, spinnerArray);
+
+            spinner[id] = (Spinner) view.findViewById(R.id.spinner_oa_frag1_select);
+            spinner[id].setAdapter(spinnerAdapter);
+
+            String value = customerFactory.generic(null, slug, CustomerFactory.GET, prefs);
+            try {
+                spinner[id].setSelection(FormFactory.SELECT_TITLE.valueOf(value).ordinal());
+            } catch (IllegalArgumentException e) {
+                Log.e(TAG, "buildFormRow: " + e.toString(), e);
+            }
+        } else {
+                view = inflater.inflate(FORM_ROW_SINGLE, null);
+                tv = (TextView) view.findViewById(R.id.label_oa_frag1_generic);
+                tv.setText(label);
+                et[id] = (EditText) view.findViewById(R.id.edittext_oa_frag1_generic);
+                et[id].setHint(hintText);
+
+                CharSequence value = customerFactory.generic(null, slug, CustomerFactory.GET, prefs);
+                Log.d(TAG, "buildFormRow: " + value);
+                et[id].setText(value);
+        }
 
         return view;
     }

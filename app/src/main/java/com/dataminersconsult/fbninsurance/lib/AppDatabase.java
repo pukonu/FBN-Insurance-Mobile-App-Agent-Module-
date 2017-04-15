@@ -9,7 +9,7 @@ import android.util.Log;
  * Basic database class for the application
  * The only class that should use this is {@link AppProvider}
  */
-class AppDatabase extends SQLiteOpenHelper {
+public class AppDatabase extends SQLiteOpenHelper {
     private static final String TAG = "AppDatabase";
 
     public static final String DATABASE_NAME = "FBNInsurance.db";
@@ -18,7 +18,7 @@ class AppDatabase extends SQLiteOpenHelper {
     // implement AppDatabase as a Singleton
     private static AppDatabase instance = null;
 
-    private AppDatabase(Context context) {
+    public AppDatabase(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         Log.d(TAG, "AppDatabase: constructor");
     }
@@ -42,10 +42,14 @@ class AppDatabase extends SQLiteOpenHelper {
         String sSQL; // Use a String  variable to facilitate logging
         sSQL = "CREATE TABLE " + UserContract.TABLE_NAME + " ("
                 + UserContract.Columns._ID + " INTEGER PRIMARY KEY NOT NULL, "
-                + UserContract.Columns.USER_EMAIL + " TEXT NOT NULL, "
+                + UserContract.Columns.USER_EMAIL + " TEXT, "
                 + UserContract.Columns.USER_PASSWORD + " TEXT, "
                 + UserContract.Columns.USER_FIRSTNAME + " TEXT, "
-                + UserContract.Columns.USER_LASTNAME + " TEXT);";
+                + UserContract.Columns.USER_LASTNAME + " TEXT, "
+                + UserContract.Columns.USER_MIDDLENAME + " TEXT, "
+                + UserContract.Columns.USER_TITLE + " TEXT, "
+                + UserContract.Columns.USER_OCCUPATION + " TEXT, "
+                + UserContract.Columns.USER_IMAGE + " TEXT);";
         Log.d(TAG, "SQL: " + sSQL);
         db.execSQL(sSQL);
     }

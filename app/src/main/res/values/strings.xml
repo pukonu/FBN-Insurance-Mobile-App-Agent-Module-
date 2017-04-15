@@ -33,4 +33,5 @@
     <string name="title_onboarding">Customer Onboarding</string>
     <string name="str_oa_onboarding_step1">Customer Onboarding Step 1</string>
     <string name="str_get_photo">Retrieve Photo</string>
+    <string name="str_btn_save">Save Information</string>
 </resources>

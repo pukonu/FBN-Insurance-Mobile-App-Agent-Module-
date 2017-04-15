@@ -4,6 +4,7 @@ import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.dataminersconsult.fbninsurance.lib.AppDatabase;
 import com.dataminersconsult.fbninsurance.lib.AppProvider;
 import com.dataminersconsult.fbninsurance.lib.UserContract;
 
@@ -29,6 +31,9 @@ public class WelcomeActivity extends AppCompatActivity {
     public static final String TMP_PASSWORD = "password";
     public static final String TMP_FIRSTNAME = "Peter";
     public static final String TMP_LASTNAME = "Ukonu";
+    public static final String TMP_MIDDLENAME = "Ifendu";
+    public static final String TMP_OCCUPATION = "Software Engineer";
+    public static final String TMP_TITLE = "Mr";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +46,8 @@ public class WelcomeActivity extends AppCompatActivity {
         textViewPlaceholder = (TextView) findViewById(R.id.wa_label_login_error);
         TextView textViewLogin = (TextView) findViewById(R.id.wa_label_login);
 
-        editTextEmail.setText(TMP_EMAIL);           // TODO remove this line, autofill login for debugging
-        editTextPassword.setText(TMP_PASSWORD);     // TODO remove this line, autofill login for debugging
+        editTextEmail.setText(TMP_EMAIL);           // TODO remove this line, auto fill login for debugging
+        editTextPassword.setText(TMP_PASSWORD);     // TODO remove this line, auto fill login for debugging
         textViewPlaceholder.setVisibility(View.GONE);
 
         /*
@@ -56,6 +61,9 @@ public class WelcomeActivity extends AppCompatActivity {
         contentValues.put(UserContract.Columns.USER_PASSWORD, TMP_PASSWORD);
         contentValues.put(UserContract.Columns.USER_FIRSTNAME, TMP_FIRSTNAME);
         contentValues.put(UserContract.Columns.USER_LASTNAME, TMP_LASTNAME);
+        contentValues.put(UserContract.Columns.USER_MIDDLENAME, TMP_MIDDLENAME);
+        contentValues.put(UserContract.Columns.USER_OCCUPATION, TMP_OCCUPATION);
+        contentValues.put(UserContract.Columns.USER_TITLE, TMP_TITLE);
 
         String paramWhere = UserContract.Columns.USER_EMAIL + "=?";
         String[] paramSelection = new String[]{TMP_EMAIL};
