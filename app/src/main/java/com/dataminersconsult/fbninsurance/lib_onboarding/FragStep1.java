@@ -1,34 +1,24 @@
-package com.dataminersconsult.fbninsurance.OnboardingFragments;
+package com.dataminersconsult.fbninsurance.lib_onboarding;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.text.Editable;
-import android.text.Layout;
-import android.text.TextWatcher;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.dataminersconsult.customfonts.TextViewStyleA;
 import com.dataminersconsult.fbninsurance.OnboardingActivity;
 import com.dataminersconsult.fbninsurance.R;
-import com.google.gson.Gson;
 
-import org.w3c.dom.Text;
-
-import java.text.Normalizer;
 import java.util.ArrayList;
 
 public class FragStep1 extends Fragment {
@@ -51,7 +41,6 @@ public class FragStep1 extends Fragment {
         customerFactory = activity.mCustomerFactory;
         prefs = getContext().getSharedPreferences("ON_BOARDING", Context.MODE_PRIVATE);
 
-        Log.d(TAG, "onCreateView: called just now");
         return buildViews(inflater);
     }
 
@@ -95,7 +84,6 @@ public class FragStep1 extends Fragment {
                     int id = Integer.parseInt(propertyBuild[0]);
                     int formType = Integer.parseInt(propertyBuild[3]);
                     String value = customerFactory.generic(null, slug, CustomerFactory.GET, prefs);
-                    Log.d(TAG, "onViewState CustomerFactory " + id + " : " + slug + " : " + value);
 
                     if (formType == FormFactory.FORM_TYPE_SELECT) {
                         spinner[id].setSelection(FormFactory.SELECT_TITLE.valueOf(value).ordinal());
@@ -139,8 +127,6 @@ public class FragStep1 extends Fragment {
         View view;
         TextView tv;
 
-        Log.d(TAG, "buildFormRow: " + slug);
-
         if (formType == FormFactory.FORM_TYPE_SELECT) {
             view = inflater.inflate(FORM_ROW_SELECT, null);
             tv = (TextView) view.findViewById(R.id.label_oa_frag1_select);
@@ -161,7 +147,7 @@ public class FragStep1 extends Fragment {
             try {
                 spinner[id].setSelection(FormFactory.SELECT_TITLE.valueOf(value).ordinal());
             } catch (IllegalArgumentException e) {
-                Log.e(TAG, "buildFormRow: " + e.toString(), e);
+//                Log.e(TAG, "buildFormRow: " + e.toString(), e);
             }
         } else {
                 view = inflater.inflate(FORM_ROW_SINGLE, null);
@@ -171,7 +157,6 @@ public class FragStep1 extends Fragment {
                 et[id].setHint(hintText);
 
                 CharSequence value = customerFactory.generic(null, slug, CustomerFactory.GET, prefs);
-                Log.d(TAG, "buildFormRow: " + value);
                 et[id].setText(value);
         }
 

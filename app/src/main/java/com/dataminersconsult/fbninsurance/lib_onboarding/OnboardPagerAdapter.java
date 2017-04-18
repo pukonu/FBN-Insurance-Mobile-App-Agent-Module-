@@ -1,10 +1,9 @@
-package com.dataminersconsult.fbninsurance.OnboardingFragments;
+package com.dataminersconsult.fbninsurance.lib_onboarding;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.util.Log;
-import android.view.View;
 
 import java.util.List;
 
@@ -33,8 +32,6 @@ public class OnboardPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-
-        Log.d(TAG, "getItem: called fragment on tab position " + position);
 
         switch (position) {
             case FRAGMENT1:

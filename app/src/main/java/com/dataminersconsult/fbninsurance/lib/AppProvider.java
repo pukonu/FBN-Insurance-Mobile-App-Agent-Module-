@@ -45,9 +45,7 @@ public class AppProvider extends ContentProvider {
     @Nullable
     @Override
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
-        Log.d(TAG, "query: called with URI " + uri);
         final int match = sUriMatcher.match(uri);
-        Log.d(TAG, "query: match is " + match);
 
         SQLiteQueryBuilder queryBuilder = new SQLiteQueryBuilder();
 
@@ -122,23 +120,19 @@ public class AppProvider extends ContentProvider {
 
         if (recordId >= 0){
             // something must have been inserted
-            Log.d(TAG, "insert: setting notifyChanged with " + uri);
             if (getContext() != null) {
                 getContext().getContentResolver().notifyChange(uri, null);
             }
         } else {
-            Log.d(TAG, "insert: nothing inserted");
+//            Log.d(TAG, "insert: nothing inserted");
         }
 
-        Log.d(TAG, "Exiting insert " + returnUri);
         return returnUri;
     }
 
     @Override
     public int update(Uri uri, ContentValues contentValues, String selection, String[] selectionArgs) {
-        Log.d(TAG, "update called with uri " + uri);
         final int match = sUriMatcher.match(uri);
-        Log.d(TAG, "match is " + match);
 
         final  SQLiteDatabase db;
         int count;
@@ -167,24 +161,18 @@ public class AppProvider extends ContentProvider {
         }
 
         if (count > 0){
-            // somethingwas deleted
-            Log.d(TAG, "update: setting notifyChanged with " + uri);
             if (getContext() != null) {
                 getContext().getContentResolver().notifyChange(uri, null);
             }
         } else {
-            Log.d(TAG, "update: nothing updated");
+//            Log.d(TAG, "update: nothing updated");
         }
-
-        Log.d(TAG, "Exiting update, returning " + count);
         return count;
     }
 
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
-        Log.d(TAG, "delete called with uri " + uri);
         final int match = sUriMatcher.match(uri);
-        Log.d(TAG, "match is " + match);
 
         final  SQLiteDatabase db;
         int count;
@@ -213,16 +201,13 @@ public class AppProvider extends ContentProvider {
         }
 
         if (count > 0){
-            // something was deleted
-            Log.d(TAG, "delete: setting notifyChanged with " + uri);
             if (getContext() != null) {
                 getContext().getContentResolver().notifyChange(uri, null);
             }
         } else {
-            Log.d(TAG, "delete: nothing deleted");
+//            Log.d(TAG, "delete: nothing deleted");
         }
 
-        Log.d(TAG, "Exiting delete, returning " + count);
         return count;
     }
 }

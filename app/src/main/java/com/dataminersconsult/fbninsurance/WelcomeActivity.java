@@ -29,11 +29,6 @@ public class WelcomeActivity extends AppCompatActivity {
     public static final long TMP_ID = 1L;
     public static final String TMP_EMAIL = "pukonu@gmail.com";
     public static final String TMP_PASSWORD = "password";
-    public static final String TMP_FIRSTNAME = "Peter";
-    public static final String TMP_LASTNAME = "Ukonu";
-    public static final String TMP_MIDDLENAME = "Ifendu";
-    public static final String TMP_OCCUPATION = "Software Engineer";
-    public static final String TMP_TITLE = "Mr";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,21 +50,21 @@ public class WelcomeActivity extends AppCompatActivity {
         let us throw in a sample user record for user to successfully login
         this record will only be entered if not exists
          */
-        final ContentResolver contentResolver = this.getContentResolver();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(UserContract.Columns.USER_EMAIL, TMP_EMAIL);
-        contentValues.put(UserContract.Columns.USER_PASSWORD, TMP_PASSWORD);
-        contentValues.put(UserContract.Columns.USER_FIRSTNAME, TMP_FIRSTNAME);
-        contentValues.put(UserContract.Columns.USER_LASTNAME, TMP_LASTNAME);
-        contentValues.put(UserContract.Columns.USER_MIDDLENAME, TMP_MIDDLENAME);
-        contentValues.put(UserContract.Columns.USER_OCCUPATION, TMP_OCCUPATION);
-        contentValues.put(UserContract.Columns.USER_TITLE, TMP_TITLE);
+//        final ContentResolver contentResolver = this.getContentResolver();
+//        ContentValues contentValues = new ContentValues();
+//        contentValues.put(UserContract.Columns.USER_EMAIL, TMP_EMAIL);
+//        contentValues.put(UserContract.Columns.USER_PASSWORD, TMP_PASSWORD);
+//        contentValues.put(UserContract.Columns.USER_FIRSTNAME, TMP_FIRSTNAME);
+//        contentValues.put(UserContract.Columns.USER_LASTNAME, TMP_LASTNAME);
+//        contentValues.put(UserContract.Columns.USER_MIDDLENAME, TMP_MIDDLENAME);
+//        contentValues.put(UserContract.Columns.USER_OCCUPATION, TMP_OCCUPATION);
+//        contentValues.put(UserContract.Columns.USER_TITLE, TMP_TITLE);
+//
+//        String paramWhere = UserContract.Columns.USER_EMAIL + "=?";
+//        String[] paramSelection = new String[]{TMP_EMAIL};
 
-        String paramWhere = UserContract.Columns.USER_EMAIL + "=?";
-        String[] paramSelection = new String[]{TMP_EMAIL};
-
-        contentResolver.delete(UserContract.CONTENT_URI, paramWhere, paramSelection);
-        contentResolver.insert(UserContract.CONTENT_URI, contentValues);
+//        contentResolver.delete(UserContract.CONTENT_URI, paramWhere, paramSelection);
+//        contentResolver.insert(UserContract.CONTENT_URI, contentValues);
 
         textViewLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,7 +76,6 @@ public class WelcomeActivity extends AppCompatActivity {
                 if (cursor != null) {
                     int cursorCount = cursor.getCount();
                     cursor.close();
-                    Log.d(TAG, String.format("Cursor returned %s object(s)", cursorCount));
 
                     if (cursorCount >= 1) {
                         Intent intent = new Intent(WelcomeActivity.this, MainActivity.class);

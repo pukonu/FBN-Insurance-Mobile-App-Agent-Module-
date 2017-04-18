@@ -24,7 +24,7 @@
         >
 
         <ImageView
-            android:id="@+id/button_back_toolbar_onboarding"
+            android:id="@+id/button_back_toolbar_cma"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
@@ -40,7 +40,7 @@
             android:layout_gravity="center"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="@string/str_oa_onboarding_step1"
+            android:text="@string/cma_customer_management"
             android:textColor="@color/Tex"
             android:textSize="@dimen/text"
             />

@@ -16,7 +16,7 @@
         android:orientation="horizontal"
         android:paddingTop="16dp">
 
-        <com.dataminersconsult.customfonts.TextViewStyleA
+        <com.dataminersconsult.customviews.TextViewStyleA
             android:id="@+id/label_oa_frag1_generic"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -37,7 +37,7 @@
         android:orientation="vertical"
         android:paddingTop="16dp">
 
-        <com.dataminersconsult.customfonts.EditTextStyleA
+        <com.dataminersconsult.customviews.EditTextStyleA
             android:id="@+id/edittext_oa_frag1_generic"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

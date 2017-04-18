@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context=".QuotationActivity">
+
+    <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                     xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                     xmlns:custom="http://schemas.android.com/tools"
+                                                     android:layout_width="match_parent"
+                                                     android:layout_height="match_parent"
+                                                     android:fitsSystemWindows="true">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <include
+                android:id="@+id/toolbar_quotation"
+                layout="@layout/toolbar_quotation"/>
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/toolbar_quotation">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/linear_q_policy_category"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="4dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingTop="16dp">
+
+                            <com.dataminersconsult.customviews.TextViewStyleA
+                                android:id="@+id/label_q_policy_category"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingEnd="10dp"
+                                android:paddingLeft="10dp"
+                                android:paddingRight="10dp"
+                                android:paddingStart="10dp"
+                                android:textColor="@color/Tex"
+                                android:textSize="@dimen/textsub"
+                                android:text="@string/string_q_policy_category"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:baselineAligned="false"
+                            android:orientation="vertical"
+                            android:paddingTop="16dp">
+
+                            <Spinner
+                                android:id="@+id/spinner_q_policy_category"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="#00000000"
+                                android:paddingEnd="10dp"
+                                android:paddingLeft="10dp"
+                                android:paddingRight="10dp"
+                                android:paddingStart="10dp"
+                                android:textColor="@color/Tex"
+                                android:textSize="@dimen/text"/>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/color_divider"/>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/linear_q_policy_type"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="4dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingTop="16dp">
+
+                            <com.dataminersconsult.customviews.TextViewStyleA
+                                android:id="@+id/label_q_policy_type"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingEnd="10dp"
+                                android:paddingLeft="10dp"
+                                android:paddingRight="10dp"
+                                android:paddingStart="10dp"
+                                android:textColor="@color/Tex"
+                                android:textSize="@dimen/textsub"
+                                android:text="@string/string_q_policy_type"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:baselineAligned="false"
+                            android:orientation="vertical"
+                            android:paddingTop="16dp">
+
+                            <Spinner
+                                android:id="@+id/spinner_q_policy_type"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="#00000000"
+                                android:paddingEnd="10dp"
+                                android:paddingLeft="10dp"
+                                android:paddingRight="10dp"
+                                android:paddingStart="10dp"
+                                android:textColor="@color/Tex"
+                                android:textSize="@dimen/text"/>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/color_divider"/>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/linear_q_dob"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="4dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingTop="16dp">
+
+                            <com.dataminersconsult.customviews.TextViewStyleA
+                                android:id="@+id/label_q_dob"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingEnd="10dp"
+                                android:paddingLeft="10dp"
+                                android:paddingRight="10dp"
+                                android:paddingStart="10dp"
+                                android:textColor="@color/Tex"
+                                android:textSize="@dimen/textsub"
+                                android:text="@string/string_q_date_of_birth"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:baselineAligned="false"
+                            android:orientation="vertical"
+                            android:paddingTop="16dp">
+
+                            <com.dataminersconsult.customviews.EditTextStyleA
+                                android:id="@+id/edittext_q_dob"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="date"
+                                android:ems="10"
+                                android:paddingLeft="10dp"
+                                android:paddingStart="10dp"
+                                android:paddingRight="10dp"
+                                android:paddingEnd="10dp"
+                                android:background="#00000000"
+                                android:maxLines="1"
+                                android:textColor="@color/Tex"
+                                android:textSize="@dimen/text"/>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/color_divider"/>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/linear_q_frequency"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="4dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingTop="16dp">
+
+                            <com.dataminersconsult.customviews.TextViewStyleA
+                                android:id="@+id/label_q_frequency"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingEnd="10dp"
+                                android:paddingLeft="10dp"
+                                android:paddingRight="10dp"
+                                android:paddingStart="10dp"
+                                android:textColor="@color/Tex"
+                                android:textSize="@dimen/textsub"
+                                android:text="@string/string_q_payment_frequency"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:baselineAligned="false"
+                            android:orientation="vertical"
+                            android:paddingTop="16dp">
+
+                            <Spinner
+                                android:id="@+id/spinner_q_frequency"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="#00000000"
+                                android:paddingEnd="10dp"
+                                android:paddingLeft="10dp"
+                                android:paddingRight="10dp"
+                                android:paddingStart="10dp"
+                                android:textColor="@color/Tex"
+                                android:textSize="@dimen/text"/>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/color_divider"/>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/linear_q_duration"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="4dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingTop="16dp">
+
+                            <com.dataminersconsult.customviews.TextViewStyleA
+                                android:id="@+id/label_q_duration"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingEnd="10dp"
+                                android:paddingLeft="10dp"
+                                android:paddingRight="10dp"
+                                android:paddingStart="10dp"
+                                android:textColor="@color/Tex"
+                                android:textSize="@dimen/textsub"
+                                android:text="@string/string_q_policy_duration"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:baselineAligned="false"
+                            android:orientation="vertical"
+                            android:paddingTop="16dp">
+
+                            <Spinner
+                                android:id="@+id/spinner_q_duration"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="#00000000"
+                                android:paddingEnd="10dp"
+                                android:paddingLeft="10dp"
+                                android:paddingRight="10dp"
+                                android:paddingStart="10dp"
+                                android:textColor="@color/Tex"
+                                android:textSize="@dimen/text"/>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/color_divider"/>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/linear_q_amount"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="4dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingTop="16dp">
+
+                            <com.dataminersconsult.customviews.TextViewStyleA
+                                android:id="@+id/label_q_amount"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingEnd="10dp"
+                                android:paddingLeft="10dp"
+                                android:paddingRight="10dp"
+                                android:paddingStart="10dp"
+                                android:textColor="@color/Tex"
+                                android:textSize="@dimen/textsub"
+                                android:text="@string/string_q_sum_assured"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:baselineAligned="false"
+                            android:orientation="vertical"
+                            android:paddingTop="16dp">
+
+                            <com.dataminersconsult.customviews.TextViewStyleA
+                                android:id="@+id/label_q_amount_result"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingEnd="10dp"
+                                android:paddingLeft="10dp"
+                                android:paddingRight="10dp"
+                                android:paddingStart="10dp"
+                                android:textColor="@color/md_red_800"
+                                android:textSize="@dimen/text"/>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/color_divider"/>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/linear_q_calculate_button"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="20dp">
+
+                        <com.dataminersconsult.customviews.TextViewStyleA
+                            android:id="@+id/q_get_quotation"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/rect_rounded_pink"
+                            android:padding="12dp"
+                            android:paddingEnd="42dp"
+                            android:paddingLeft="42dp"
+                            android:paddingRight="42dp"
+                            android:paddingStart="42dp"
+                            android:text="@string/q_get_quotation"
+                            android:textColor="#fff"
+                            android:textSize="@dimen/text"
+                            android:textAlignment="center"
+                            android:layout_gravity="center_horizontal|center"/>
+
+                    </LinearLayout>
+                </LinearLayout>
+            </ScrollView>
+        </RelativeLayout>
+    </android.support.design.widget.CoordinatorLayout>
+</RelativeLayout>

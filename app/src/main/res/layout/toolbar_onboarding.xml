@@ -34,7 +34,7 @@
             />
 
 
-        <com.dataminersconsult.customfonts.TextViewStyleA
+        <com.dataminersconsult.customviews.TextViewStyleA
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

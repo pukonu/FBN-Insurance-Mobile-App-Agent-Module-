@@ -1,24 +1,24 @@
-package com.dataminersconsult.customfonts;
+package com.dataminersconsult.customviews;
 
 import android.content.Context;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
-import android.widget.TextView;
+import android.widget.EditText;
 
 
-public class TextViewStyleA extends TextView {
+public class EditTextStyleA extends EditText {
 
-    public TextViewStyleA(Context context, AttributeSet attrs, int defStyle) {
+    public EditTextStyleA(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         init();
     }
 
-    public TextViewStyleA(Context context, AttributeSet attrs) {
+    public EditTextStyleA(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
     }
 
-    public TextViewStyleA(Context context) {
+    public EditTextStyleA(Context context) {
         super(context);
         init();
     }

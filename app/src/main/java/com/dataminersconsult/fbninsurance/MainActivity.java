@@ -34,9 +34,24 @@ public class MainActivity extends AppCompatActivity {
         btnOnBoarding.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d(TAG, "onClick: btnOnboarding clicked");
                 Intent intentOnBoarding = new Intent(MainActivity.this, OnboardingActivity.class);
                 startActivity(intentOnBoarding);
+            }
+        });
+
+        btnCustomer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intentCustomerManagement = new Intent(MainActivity.this, CustomerManagementActivity.class);
+                startActivity(intentCustomerManagement);
+            }
+        });
+
+        btnQuotation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intentQuotation = new Intent(MainActivity.this, QuotationActivity.class);
+                startActivity(intentQuotation);
             }
         });
     }

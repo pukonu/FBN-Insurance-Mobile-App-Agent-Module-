@@ -1,4 +1,4 @@
-package com.dataminersconsult.fbninsurance.OnboardingFragments;
+package com.dataminersconsult.fbninsurance.lib_onboarding;
 
 class FormFactory {
     private static final int ARRAY_SIZE = 4;
@@ -6,7 +6,7 @@ class FormFactory {
     public static final int FORM_TYPE_SELECT = 2;
 
     enum FIELDS {
-        first_name, last_name, middle_name, title, occupation
+        first_name, last_name, middle_name, title, occupation, image
     }
 
     enum SELECT_TITLE {

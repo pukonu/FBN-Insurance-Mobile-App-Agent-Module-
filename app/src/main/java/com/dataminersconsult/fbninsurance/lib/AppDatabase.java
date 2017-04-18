@@ -20,7 +20,6 @@ public class AppDatabase extends SQLiteOpenHelper {
 
     public AppDatabase(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
-        Log.d(TAG, "AppDatabase: constructor");
     }
 
     /**
@@ -30,7 +29,6 @@ public class AppDatabase extends SQLiteOpenHelper {
      */
     static AppDatabase getInstance(Context context) {
         if (instance == null) {
-            Log.d(TAG, "getInstance: creating new instance");
             instance = new AppDatabase(context);
         }
         return instance;
@@ -38,7 +36,6 @@ public class AppDatabase extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        Log.d(TAG, "onCreate: starts");
         String sSQL; // Use a String  variable to facilitate logging
         sSQL = "CREATE TABLE " + UserContract.TABLE_NAME + " ("
                 + UserContract.Columns._ID + " INTEGER PRIMARY KEY NOT NULL, "
@@ -50,8 +47,13 @@ public class AppDatabase extends SQLiteOpenHelper {
                 + UserContract.Columns.USER_TITLE + " TEXT, "
                 + UserContract.Columns.USER_OCCUPATION + " TEXT, "
                 + UserContract.Columns.USER_IMAGE + " TEXT);";
-        Log.d(TAG, "SQL: " + sSQL);
         db.execSQL(sSQL);
+
+        // TODO remove the line before production
+        String qs = "INSERT INTO " + UserContract.TABLE_NAME +
+                " (email, password, title, first_name, last_name, middle_name, occupation) " +
+                "VALUES ('pukonu@gmail.com', 'password', 'Mr', 'Peter', 'Ukonu', '', 'Software Consultant');";
+        db.execSQL(qs);
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.dataminersconsult.fbninsurance.OnboardingFragments;
+package com.dataminersconsult.fbninsurance.lib_onboarding;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -7,7 +7,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
@@ -26,13 +25,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.dataminersconsult.customfonts.TextViewStyleA;
+import com.dataminersconsult.customviews.TextViewStyleA;
 import com.dataminersconsult.fbninsurance.OnboardingActivity;
 import com.dataminersconsult.fbninsurance.R;
 import com.dataminersconsult.fbninsurance.lib.PermissionUtility;
-import com.google.gson.Gson;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -60,7 +56,6 @@ public class FragStep3 extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Log.d(TAG, "onCreateView: started");
         View view = inflater.inflate(R.layout.activity_onboarding_frag3, container, false);
 
         OnboardingActivity activity = (OnboardingActivity) getActivity();
@@ -105,7 +100,7 @@ public class FragStep3 extends Fragment {
                 bm = customerFactory.getImage(prefs);
                 mImageView.setImageBitmap(bm);
             } catch (NullPointerException e) {
-                Log.e(TAG, "onViewStateRestored: " + e.toString(), e);
+//                Log.e(TAG, "onViewStateRestored: " + e.toString(), e);
             }
         }
     }
@@ -197,9 +192,6 @@ public class FragStep3 extends Fragment {
             try {
                 bm = MediaStore.Images.Media.getBitmap(getActivity().getApplicationContext().getContentResolver(), data.getData());
             } catch (IOException e) {
-                Log.d(TAG, "onSelectFromGalleryResult: error occurred while retrieving the image data");
-                e.printStackTrace();
-            } catch (NullPointerException e) {
                 e.printStackTrace();
             }
         }
@@ -237,11 +229,7 @@ public class FragStep3 extends Fragment {
             fo = new FileOutputStream(destination);
             fo.write(bytes.toByteArray());
             fo.close();
-        } catch (FileNotFoundException e) {
-            Log.d(TAG, "onCaptureImageResult: File was not found");
-            e.printStackTrace();
         } catch (IOException e) {
-            Log.d(TAG, "onCaptureImageResult: An IO exception occured");
             e.printStackTrace();
         }
 
@@ -260,7 +248,6 @@ public class FragStep3 extends Fragment {
     public static Bitmap rotateImageIfRequired(Uri selectedImage) throws IOException {
 
         String mMediaString = selectedImage.toString();
-        Log.d(TAG, "rotateImageIfRequired: " + mMediaString);
         BitmapFactory.Options bounds = new BitmapFactory.Options();
         bounds.inJustDecodeBounds = true;
         BitmapFactory.decodeFile(mMediaString, bounds);

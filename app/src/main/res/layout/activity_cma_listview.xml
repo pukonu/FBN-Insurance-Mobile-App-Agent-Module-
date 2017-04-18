@@ -1,0 +1,133 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_alignParentLeft="true"
+              android:layout_alignParentStart="true"
+              android:layout_alignParentTop="true"
+              android:background="@drawable/rect"
+              android:orientation="horizontal"
+              android:padding="16dp">
+
+    <LinearLayout
+        android:id="@+id/linear_left"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="7">
+
+        <LinearLayout
+            android:id="@+id/linear1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.dataminersconsult.customviews.TextViewStyleA
+                android:id="@+id/cma_label_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/Tex"
+                android:textSize="20sp"
+                tools:text="Mr Firstname Lastname"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/linear3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linear1"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal"
+            >
+
+            <com.dataminersconsult.customviews.TextViewStyleA
+                android:id="@+id/cma_label_email"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/Tex"
+                android:textSize="@dimen/textsub"
+
+                tools:text="email@example.com"/>
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/linear4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linear3"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            >
+
+            <com.dataminersconsult.customviews.TextViewStyleA
+                android:id="@+id/cma_label_occupation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="3dp"
+                android:maxLines="4"
+                android:textColor="@color/textSub"
+                android:textSize="@dimen/textsub"
+                tools:text="Occupation"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linear4"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            >
+
+            <com.dataminersconsult.customviews.TextViewStyleA
+                android:id="@+id/cma_label_edit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/string_cma_edit"
+                android:textColor="#26a4ed"
+                android:textSize="@dimen/textsub"/>
+
+            <com.dataminersconsult.customviews.TextViewStyleA
+                android:id="@+id/cma_label_uploaded_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="end"
+                android:textColor="@color/textSub"
+                android:textSize="@dimen/textsub"
+                tools:text="Apr 17,2017"/>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/linear_right"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_weight="3">
+
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:srcCompat="@android:drawable/ic_menu_gallery"
+            android:id="@+id/cma_image_view"
+            android:layout_weight="1"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            />
+    </LinearLayout>
+
+</LinearLayout>

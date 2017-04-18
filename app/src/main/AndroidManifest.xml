@@ -2,9 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.dataminersconsult.fbninsurance">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -42,6 +42,18 @@
             <meta-data
                 android:name="co.paystack.android.PublicKey"
                 android:value="pk_test_3b537cef92446fa39c306aac6112f67eadb349bc"/>
+        </activity>
+        <activity
+            android:name=".CustomerManagementActivity"
+            android:label="@string/title_customer_management"
+            android:theme="@style/AppTheme.NoStatusBar"
+            android:windowSoftInputMode="stateHidden|adjustResize">
+            >
+        </activity>
+        <activity android:name=".QuotationActivity"
+                  android:label="@string/title_get_quotation"
+                  android:theme="@style/AppTheme.NoStatusBar"
+                  android:windowSoftInputMode="stateHidden|adjustResize">
         </activity>
     </application>
 

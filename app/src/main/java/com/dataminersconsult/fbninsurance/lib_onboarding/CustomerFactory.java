@@ -1,4 +1,4 @@
-package com.dataminersconsult.fbninsurance.OnboardingFragments;
+package com.dataminersconsult.fbninsurance.lib_onboarding;
 
 import android.app.Activity;
 import android.content.ContentResolver;
@@ -7,7 +7,6 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
-import android.util.Log;
 
 import com.dataminersconsult.fbninsurance.lib.UserContract;
 
@@ -59,7 +58,6 @@ public class CustomerFactory implements Serializable {
     }
 
     public void saveCustomerInformation(Activity activity, SharedPreferences prefs) {
-//        Log.d(TAG, "saveCustomerInformation: " + prefs.getString("image", ""));
         ContentResolver contentResolver = activity.getContentResolver();
         ContentValues contentValues = new ContentValues();
 
@@ -67,6 +65,6 @@ public class CustomerFactory implements Serializable {
             contentValues.put(field.toString(), generic(null, field.toString(), GET, prefs));
         }
         contentResolver.insert(UserContract.CONTENT_URI, contentValues);
-//        prefs.edit().clear().apply();
+        prefs.edit().clear().apply();
     }
 }

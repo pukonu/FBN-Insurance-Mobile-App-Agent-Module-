@@ -44,7 +44,7 @@
             android:textColor="@color/colorBlack"
             android:textColorHint="@color/colorhint">
 
-            <com.dataminersconsult.customfonts.EditTextStyleA
+            <com.dataminersconsult.customviews.EditTextStyleA
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="46dp"
@@ -80,7 +80,7 @@
             android:textColorHint="@color/md_grey_500">
 
 
-            <com.dataminersconsult.customfonts.EditTextStyleA
+            <com.dataminersconsult.customviews.EditTextStyleA
 
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -137,7 +137,7 @@
                     android:checked="false"
                     />
 
-                <com.dataminersconsult.customfonts.TextViewStyleA
+                <com.dataminersconsult.customviews.TextViewStyleA
 
                     android:id="@+id/remember"
                     android:layout_width="wrap_content"
@@ -157,7 +157,7 @@
     </LinearLayout>
 
 
-    <com.dataminersconsult.customfonts.TextViewStyleA
+    <com.dataminersconsult.customviews.TextViewStyleA
         android:id="@+id/wa_label_login"
         android:layout_height="wrap_content"
         android:background="@drawable/rect_rounded_pink"
@@ -192,7 +192,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp">
 
-        <com.dataminersconsult.customfonts.TextViewStyleA
+        <com.dataminersconsult.customviews.TextViewStyleA
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="3dp"

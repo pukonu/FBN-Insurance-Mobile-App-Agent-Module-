@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/md_grey_100"
+                tools:context=".CustomerManagementActivity"
+    >
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_customer_activity" />
+
+    <LinearLayout
+        android:layout_below="@+id/toolbar"
+        android:id="@+id/cma_top_menu_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/toolbarbg"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:orientation="horizontal"
+        >
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+            <com.dataminersconsult.customviews.TextViewStyleA
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:text="@string/string_cma_sync_data"
+                android:drawableLeft="@drawable/arrowupdown"
+                android:drawableStart="@drawable/arrowupdown"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginLeft="44dp"
+                android:layout_marginRight="44dp"
+                android:textColor="@color/Tex"
+
+                />
+
+            <com.dataminersconsult.customviews.TextViewStyleA
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/string_cma_upload_customer_data"
+                android:textColor="@color/textSub"
+                android:textSize="12sp"
+                android:gravity="center"
+                android:layout_marginLeft="40dp"
+                android:layout_marginStart="40dp"
+                />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="21dp"
+            android:background="@color/md_grey_200">
+
+        </View>
+
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+            <com.dataminersconsult.customviews.TextViewStyleA
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:text="@string/string_cma_delete_all"
+                android:drawableLeft="@drawable/trash"
+                android:drawableStart="@drawable/trash"
+                android:drawablePadding="10dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginLeft="44dp"
+                android:layout_marginRight="44dp"
+                android:textColor="@color/Tex"
+                />
+
+            <com.dataminersconsult.customviews.TextViewStyleA
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/string_cma_clear_all_items"
+                android:textColor="@color/textSub"
+                android:textSize="12sp"
+                android:gravity="center"
+                android:layout_marginLeft="26dp"
+                android:layout_marginStart="26dp"
+                />
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        android:layout_below="@+id/cma_top_menu_group"
+        >
+
+        <com.dataminersconsult.customviews.ListViewStyleA
+            android:id="@+id/cma_listview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#fff"
+            android:divider="#00000000"/>
+
+    </ScrollView>
+
+
+</RelativeLayout>

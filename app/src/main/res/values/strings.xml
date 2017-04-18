@@ -34,4 +34,27 @@
     <string name="str_oa_onboarding_step1">Customer Onboarding Step 1</string>
     <string name="str_get_photo">Retrieve Photo</string>
     <string name="str_btn_save">Save Information</string>
+    <string name="cma_customer_management">Customer Management</string>
+    <string name="string_cma_sync_data">SYNC DATA</string>
+    <string name="string_cma_upload_customer_data">Upload customers</string>
+    <string name="string_cma_delete_all">DELETE ALL</string>
+    <string name="string_cma_clear_all_items">Clear all items</string>
+    <string name="string_cma_edit">Edit</string>
+    <string name="cma_string_uploaded">Uploaded</string>
+    <string name="title_customer_management">Customer Management</string>
+    <string name="toolbar_quotation_calculator">Quotation Calculator</string>
+    <string name="q_get_quotation">Get Quotation</string>
+    <string name="string_q_policy_category">Policy Category</string>
+    <string name="string_q_policy_type">Policy Type</string>
+    <string name="string_q_date_of_birth">Date of Birth</string>
+    <string name="string_q_payment_frequency">Payment Frequency</string>
+    <string name="string_q_policy_duration">Policy Duration</string>
+    <string name="string_q_sum_assured">Sum Assured</string>
+    <string name="title_get_quotation">Get Quoation</string>
+    <string name="label_oa_card_details">Card Details</string>
+    <string name="label_oa_card_expiry_month">Card Expiry Month</string>
+    <string name="label_oa_card_expiry_year">Card Expiry Year</string>
+    <string name="label_oa_cvv2">CVV2</string>
+    <string name="label_oa_customer_email">Customer Email</string>
+    <string name="label_oa_amount">Amount</string>
 </resources>
